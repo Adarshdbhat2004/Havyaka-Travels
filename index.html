@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havyaka Travels | Premium Travel & Heritage Tours</title>
+    
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Serif+Kannada:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- MODERN CORPORATE DESIGN SYSTEM --- */
+        :root {
+            --primary: #8E1B1B;         /* Luxury Deep Maroon */
+            --primary-light: #B63333;   
+            --accent: #E5A93C;          /* Premium Metallic Gold */
+            --dark: #121613;            /* Rich Obsidian Black */
+            --light-bg: #FBFBFA;        /* Subtle Luxury Cream Accent */
+            --card-bg: #ffffff;
+            --text-muted: #626864;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 12px 35px rgba(142, 27, 27, 0.06);
+            --shadow-lg: 0 24px 50px rgba(0, 0, 0, 0.1);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Serif Kannada', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- CSS ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1.08); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes shine {
+            100% { left: 125%; }
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- STICKY CORPORATE NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 6%;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-family: 'Noto Serif Kannada', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a:not(.nav-cta)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover(:not(.nav-cta))::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-sm);
+            overflow: relative;
+        }
+
+        .nav-cta:hover {
+            background: var(--dark) !important;
+            transform: translateY(-2px);
+        }
+
+        /* --- IMMERSIVE HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 95vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 6% 80px;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(18,22,19,0.9) 0%, rgba(18,22,19,0.5) 100%), 
+                        url('https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            z-index: 1;
+            animation: heroZoom 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 750px;
+            z-index: 2;
+            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .corporate-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 100px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            font-family: 'Noto Serif Kannada', serif;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 36px;
+            border-radius: 100px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-primary::after, .nav-cta::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 20%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+        }
+
+        .btn-primary:hover::after {
+            animation: shine 0.8s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(229, 169, 60, 0.2);
+        }
+
+        .btn-secondary {
+            border: 2px solid white;
+            color: white;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--dark);
+            transform: translateY(-4px);
+        }
+
+        /* --- STATS / VALUES SECTION --- */
+        .stats-section {
+            max-width: 1200px;
+            margin: -60px auto 60px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .stat-item {
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.3rem;
+            margin-bottom: 12px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover .stat-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .stat-item h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* --- MAIN SECTIONS --- */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif Kannada', serif;
+            font-size: 2.6rem;
+            color: var(--dark);
+        }
+
+        /* --- FEATURED ACTIVE TOUR CARD --- */
+        .featured-tour-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0,0,0,0.04);
+            margin-bottom: 80px;
+            transition: var(--transition);
+        }
+
+        .featured-tour-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tour-gallery {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), 
+                        url('tt.jpeg') no-repeat center center/cover;
+            min-height: 400px;
+            transition: var(--transition);
+        }
+
+        .featured-tour-card:hover .tour-gallery {
+            transform: scale(1.02);
+        }
+
+        .tour-badge {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tour-details {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+            z-index: 2;
+        }
+
+        .tour-date {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .tour-details h3 {
+            font-family: 'Noto Serif Kannada', serif;
+            font-size: 1.9rem;
+            margin-bottom: 16px;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        .tour-spots {
+            list-style: none;
+            margin: 20px 0 30px;
+        }
+
+        .tour-spots li {
+            margin-bottom: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .tour-spots li:hover {
+            transform: translateX(6px);
+            color: var(--primary);
+        }
+
+        .tour-spots li::before {
+            content: '📍';
+        }
+
+        .tour-price-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 24px;
+        }
+
+        .price-meta .p-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .price-meta .p-val {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .btn-sm {
+            padding: 14px 30px;
+            font-size: 0.95rem;
+        }
+
+        /* --- GLOBAL SERVICES GRID --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 40px 32px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid transparent;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-top-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .s-icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover .s-icon {
+            transform: scale(1.15) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .service-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* --- CORPORATE FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 6% 40px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-brand h2 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            max-width: 320px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 6px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* --- RESPONSIVE DESIGN INTERFACE --- */
+        @media (max-width: 992px) {
+            .featured-tour-card { grid-template-columns: 1fr; }
+            .tour-gallery { min-height: 300px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero h1 { font-size: 2.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 4%; }
+            .nav-links { display: none; }
+            .hero { padding-top: 120px; text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .tour-details { padding: 32px 24px; }
+            .tour-price-box { flex-direction: column; gap: 20px; text-align: center; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY CORPORATE NAVIGATION -->
+    <nav>
+        <div class="logo">
+            HAVYAKA TRAVELS <span>| ಹವ್ಯಕ ಟ್ರಾವೆಲ್ಸ್</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#featured">Featured Tours</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="tel:+919480583987" class="nav-cta">Call Corporate Office</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO IMPRESSIVE INTRODUCTION SECTION WITH ZOOM BACKGROUND -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="corporate-badge">Premium Heritage Travel Partner</span>
+            <h1>Explore the World with Authenticity and Comfort</h1>
+            <p>At Havyaka Travels, we curate soulful travel experiences blending heritage exploration, spiritual journeys, and absolute comfort.</p>
+            <div class="hero-buttons">
+                <a href="#featured" class="btn btn-primary">View Ongoing Tours</a>
+                <a href="tel:+919480583987" class="btn btn-secondary">Contact Consultant</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPANY STATS WIDGET -->
+    <section class="stats-section reveal">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-icon">🚌</span>
+                <h3>Premium Fleet</h3>
+                <p>Comfortable AC Coaches</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">⭐</span>
+                <h3>Top Rated</h3>
+                <p>Quality Food & Hospitality</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🛡️</span>
+                <h3>100% Safe</h3>
+                <p>Reliable Guided Journeys</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE ACTIVE FEATURED TOURS -->
+    <section class="section reveal" id="featured">
+        <div class="section-header">
+            <span class="section-tag">Active Booking Open</span>
+            <h2 class="section-title">ವಿಶೇಷ ಪ್ರಸ್ತುತ ಪ್ರವಾಸಗಳು</h2>
+        </div>
+
+        <div class="featured-tour-card">
+            <div class="tour-gallery">
+                <span class="tour-badge">Trending Yatra</span>
+            </div>
+            <div class="tour-details">
+                <span class="tour-date">📅 11-07-2026 to 12-07-2026</span>
+                <h3>ಶಿರಸಿಯಿಂದ ಬಾದಾಮಿ – ಪಟ್ಟದಕಲ್ಲು – ಐಹೊಳೆ – ಮಂತ್ರಾಲಯ ಕ್ಷೇತ್ರ ದರ್ಶನ</h3>
+                
+                <ul class="tour-spots">
+                    <li>ಬಾದಾಮಿ ಅದ್ಭುತ ಗುಹಾ ದೇವಾಲಯಗಳು</li>
+                    <li>ವಿಶ್ವ ಪರಂಪರೆ ತಾಣ ಪಟ್ಟದಕಲ್ಲು ವೈಭವ</li>
+                    <li>ಚಾಲುಕ್ಯರ ಕಲಾ ಸಂಸ್ಕೃತಿಯ ಐಹೊಳೆ</li>
+                    <li>ಶ್ರೀ ರಾಘವೇಂದ್ರ ಸ್ವಾಮಿಗಳ ಮಂತ್ರಾಲಯ ಕ್ಷೇತ್ರ ದರ್ಶನ</li>
+                </ul>
+
+                <div class="tour-price-box">
+                    <div class="price-meta">
+                        <div class="p-label">ಪ್ರವಾಸ ಶುಲ್ಕ (All Inclusive)</div>
+                        <div class="p-val">₹6,000/- <small style="font-size:0.9rem; font-weight:400; color:var(--text-muted)">/ per person</small></div>
+                    </div>
+                    <a href="tel:+919480583987" class="btn btn-primary btn-sm">Book Your Seat Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPREHENSIVE COMPANY CAPABILITIES SECTION -->
+    <section class="section reveal" id="services" style="background: white; max-width: 100%;">
+        <div class="section" style="padding: 40px 24px;">
+            <div class="section-header">
+                <span class="section-tag">What We Deliver</span>
+                <h2 class="section-title">ನಮ್ಮ ಸೇವೆಗಳು </h2>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="s-icon">🕉️</span>
+                    <h3>Spiritual Yatras</h3>
+                    <p>Meticulously organized pilgrimage tours across sacred shrines with dedicated schedules and customized rituals support.</p>
+                </div>
+                <div class="service-card">
+                    <span class="s-icon">🏰</span>
+                    <h3>Heritage & Culture</h3>
+                    <p>Expertly guided historical excursions exploring classic architecture, dynasties, and ancient heritage spots.</p>
+                </div>
+                <div class="service-card">
+                    <span class="s-icon">🍱</span>
+                    <h3>Premium Hospitality</h3>
+                    <p>We take pride in serving high-quality wholesome vegetarian food and clean, hygienic accommodation setups everywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORPORATE FOOTER PANEL -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>HAVYAKA TRAVELS</h2>
+                <p>Bringing you closer to heritage, history, and divine devotion through state-of-the-art logistics and premium hospitality execution.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#featured">Featured Tours</a></li>
+                    <li><a href="#services">Our Services</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Corporate Desk</h4>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 8px;"><strong>Manager:</strong> ಶ್ರೀವತ್ಸ ಹೆಗಡೆ</p>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;"><strong>Hotline:</strong> +91 9480583987</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Havyaka Travels Company. All corporate rights reserved.</p>
+            <p>Reliable Agency Standards</p>
+        </div>
+    </footer>
+
+    <!-- LIGHTWEIGHT INTERSECTION OBSERVER FOR SCROLL ANIMATIONS -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
